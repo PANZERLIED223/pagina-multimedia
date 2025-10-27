@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sitio Multimedia Seguro</title>
+  <meta name="description" content="Sitio multimedia: galería, audio, video, seguridad">
+  <meta name="keywords" content="multimedia,galería,audio,video,seguridad,firewall">
+  <meta name="author" content="Equipo">
+  <meta property="og:title" content="Sitio Multimedia Seguro">
+  <meta property="og:description" content="Galería, reproductores y configuración de seguridad">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https://cdnjs.cloudflare.com https://cdn.plyr.io; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.plyr.io; img-src 'self' data: https:; media-src 'self' https:;">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+  <style>
+    :root{--bg:#0b1220;--card:#071226;--accent:#1fb6ff;--muted:#9aa4b2}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial;background:linear-gradient(180deg,#071022 0%,#061125 100%);color:#e6eef6;line-height:1.4}
+    .wrap{max-width:1100px;margin:36px auto;padding:20px}
+    header{display:flex;gap:16px;align-items:center}
+    header img{width:64px;height:64px;border-radius:10px}
+    header h1{margin:0;font-size:1.5rem}
+    .grid{display:grid;gap:18px;margin-top:20px}
+    @media(min-width:920px){.grid{grid-template-columns:2fr 1fr}}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.06));padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
+    .gallery a img{width:100%;height:110px;object-fit:cover;border-radius:8px;display:block}
+    .playlist{list-style:none;padding:0;margin:0}
+    .playlist li{display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;background:rgba(255,255,255,0.02);margin-bottom:8px}
+    .btn{background:var(--accent);color:#022227;padding:8px 12px;border-radius:8px;border:none;cursor:pointer}
+    pre{background:#021024;color:#d8eefc;padding:12px;border-radius:8px;overflow:auto}
+    footer{margin-top:20px;color:var(--muted);font-size:0.9rem}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <img src="https://placehold.co/64x64/png?text=Logo" alt="logo">
+      <div>
+        <h1>Sitio Multimedia Seguro</h1>
+        <p style="margin:4px 0;color:var(--muted)">Galería · Audio · Video · Seguridad</p>
+      </div>
+    </header>
+
+    <div class="grid">
+      <main class="card">
+        <section>
+          <h2>Galería</h2>
+          <div class="gallery">
+            <a href="https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&w=1200" data-lightbox="galeria" data-title="Paisaje 1"><img src="https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Imagen 1"></a>
+            <a href="https://images.pexels.com/photos/358574/pexels-photo-358574.jpeg?auto=compress&cs=tinysrgb&w=1200" data-lightbox="galeria" data-title="Persona 2"><img src="https://images.pexels.com/photos/358574/pexels-photo-358574.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Imagen 2"></a>
+            <a href="https://images.pexels.com/photos/1761279/pexels-photo-1761279.jpeg?auto=compress&cs=tinysrgb&w=1200" data-lightbox="galeria" data-title="Playa 3"><img src="https://images.pexels.com/photos/1761279/pexels-photo-1761279.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Imagen 3"></a>
+            <a href="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&w=1200" data-lightbox="galeria" data-title="Montaña 4"><img src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Imagen 4"></a>
+          </div>
+        </section>
+
+        <section style="margin-top:18px">
+          <h2>Audio</h2>
+          <ul class="playlist" id="playlist">
+            <li data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">SoundHelix 1 <button class="btn" data-action="play">Reproducir</button></li>
+            <li data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">SoundHelix 2 <button class="btn" data-action="play">Reproducir</button></li>
+          </ul>
+          <div style="margin-top:8px">Volumen <input id="vol" type="range" min="0" max="1" step="0.01" value="0.8"></div>
+        </section>
+
+        <section style="margin-top:18px">
+          <h2>Video</h2>
+          <video id="player" controls playsinline crossorigin="anonymous" style="width:100%;max-height:480px;border-radius:8px">
+            <source src="https://cdn.pixabay.com/vimeo/331175194/pexels-video-331175194.mp4" type="video/mp4">
+          </video>
+        </section>
+
+      </main>
+
+      <aside class="card">
+        <h3>Meta y Seguridad</h3>
+        <p style="color:var(--muted)">Se han incluido meta tags y una CSP de ejemplo. Ajusta según dominio y recursos externos.</p>
+        <h4 style="margin-top:12px">Cortafuegos (resumen)</h4>
+        <pre>
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+sudo ufw allow 22/tcp
+sudo ufw enable
+        </pre>
+      </aside>
+    </div>
+
+    <footer>
+      <p>© 2025 Sitio Multimedia Seguro</p>
+    </footer>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+  <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+  <script>
+    const player = new Plyr('#player');
+    let currentSound = null;
+    const playlist = document.getElementById('playlist');
+    playlist.addEventListener('click', e=>{
+      const btn = e.target.closest('button[data-action]');
+      if(!btn) return;
+      const li = btn.closest('li');
+      const src = li.getAttribute('data-src');
+      if(currentSound) currentSound.stop();
+      currentSound = new Howl({src:[src], html5:true, volume:parseFloat(document.getElementById('vol').value)});
+      currentSound.play();
+      Array.from(playlist.children).forEach(x=>x.style.opacity=0.85);
+      li.style.opacity=1;
+    });
+    document.getElementById('vol').addEventListener('input', e=>{ if(currentSound) currentSound.volume(parseFloat(e.target.value)); });
+    lightbox.option({resizeDuration:200,wrapAround:true});
+  </script>
+</body>
+</html>
